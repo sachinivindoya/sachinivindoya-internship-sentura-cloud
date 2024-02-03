@@ -17,7 +17,7 @@ import java.io.IOException;
         private static final OkHttpClient client = new OkHttpClient();
         private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws IOException {
 
             String getUrl = "GET /api/users/{id}";
             try {
@@ -35,6 +35,20 @@ import java.io.IOException;
                 System.out.println("POST Response: " + postResponse);
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+
+            String listUrl = "GET /api/users";
+            String listResponse = doListRequest(listUrl);
+            System.out.println("list Response: " + listResponse);
+        }
+
+        private static String doListRequest(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            try (Response response = client.newCall(request).execute()) {
+                return response.body().string();
             }
         }
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
-const WeavyIntegration = () => {
+const Api = () => {
   // State to hold users data
   const [users, setUsers] = useState([]);
 
@@ -30,4 +30,4 @@ const WeavyIntegration = () => {
   );
 };
 
-export default WeavyIntegration;
+export default Api;
